@@ -4,8 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import MainNav from "@/components/Navigation/MainNav.vue";
+import { RouterView } from 'vue-router';
+import MainNav from '@/components/navigation/MainNav.vue';
 </script>
 
 <style>

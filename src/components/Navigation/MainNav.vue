@@ -5,9 +5,16 @@
         <div class="hidden pt-2 md:inline md:pl-6">
           <img class="h-auto w-full md:w-14" src="assets/date-app_logo2.png" />
         </div>
-        <div class="w-10 justify-end pl-6 md:hidden">
-          <font-awesome-icon :icon="inOutIcon" size="2xl" @click="SHOW_NAV"></font-awesome-icon>
-        </div>
+
+        <font-awesome-icon
+          class="w-10 justify-end pl-6 md:hidden"
+          aria-label="hamXicon"
+          role="button"
+          :icon="inOutIcon"
+          size="2xl"
+          @click="SHOW_NAV"
+        ></font-awesome-icon>
+
         <ul
           :class="[
             'absolute',
@@ -38,7 +45,7 @@
             >
           </li>
         </ul>
-        <div class="pl-6 pt-2 md:hidden">
+        <div class="pl-3 pt-2 md:hidden">
           <img class="h-10 w-11 md:w-14" src="assets/date-app_logo2.png" />
         </div>
       </div>
@@ -84,4 +91,9 @@ const route = useRoute();
 const isCurrentRoute = (url: string) => {
   return route.path === url;
 };
+
+// Components using <script setup> are closed by default
+// that's why defineExpose compiler is used here so inOutIcon computed value
+// can be reached in MainNav.test.ts
+defineExpose({ inOutIcon });
 </script>
