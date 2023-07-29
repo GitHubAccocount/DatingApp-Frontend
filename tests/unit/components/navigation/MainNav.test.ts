@@ -70,14 +70,28 @@ describe('MainNav', () => {
       // Try increasing --outputDiffMaxSize option."
       // Perhaps stubing font-awesome-icon caused the message(?error?)
       // That's why computed value is used
-      const wrapper = mount(MainNav);
+      const wrapper = mount(MainNav, {
+        global: {
+          stubs: {
+            FontAwesomeIcon: true,
+            RouterLink: RouterLinkStub
+          }
+        }
+      });
       expect(wrapper.vm.inOutIcon).toEqual(['fas', 'bars']);
     });
 
     it('return correct icon after user click', () => {
       const userStore = useUserStore();
       userStore.showNav = true;
-      const wrapper = mount(MainNav);
+      const wrapper = mount(MainNav, {
+        global: {
+          stubs: {
+            FontAwesomeIcon: true,
+            RouterLink: RouterLinkStub
+          }
+        }
+      });
       expect(wrapper.vm.inOutIcon).toEqual(['fas', 'xmark']);
     });
   });
