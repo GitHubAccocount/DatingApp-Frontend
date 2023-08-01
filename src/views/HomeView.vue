@@ -1,5 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an home page</h1>
-  </div>
+  <the-hero></the-hero>
 </template>
+<script lang="ts" setup>
+import TheHero from '@/components/loveSearch/TheHero.vue';
+</script>

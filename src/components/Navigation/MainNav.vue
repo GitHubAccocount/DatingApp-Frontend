@@ -51,14 +51,14 @@
       </div>
 
       <div class="py-3 pr-6">
-        <Button></Button>
+        <custom-button text="Login"></custom-button>
       </div>
     </nav>
   </header>
 </template>
 
 <script lang="ts" setup>
-import Button from '@/components/Shared/Button.vue';
+import CustomButton from '@/components/Shared/CustomButton.vue';
 
 import type { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { computed, ref } from 'vue';

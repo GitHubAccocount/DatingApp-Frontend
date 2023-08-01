@@ -1,19 +1,25 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts}",
-    "./src/views/**/*.{vue,js,ts}",
-    "./src/components/**/*.{vue,js,ts}",
+    './index.html',
+    './src/**/*.{vue,js,ts}',
+    './src/views/**/*.{vue,js,ts}',
+    './src/components/**/*.{vue,js,ts}'
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Lato", ...defaultTheme.fontFamily.sans],
+        sans: ['Lato', ...defaultTheme.fontFamily.sans]
       },
-    },
+      screens: {
+        xs: '360px'
+      },
+      height: {
+        svh80: '80svh'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
