@@ -2,7 +2,7 @@
   <img
     :src="photo"
     alt="Couple photos"
-    class="} h-full w-full rounded-t-md object-cover shadow-sm shadow-gray-700 transition-opacity duration-500 ease-in"
+    class="h-full w-full rounded-md object-cover shadow-sm shadow-gray-700 lg:object-right xl:object-center"
   />
 </template>
 
