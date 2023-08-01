@@ -27,11 +27,3 @@ const intervalPhotos = setInterval(changePhoto, 5000);
 
 onBeforeUnmount(() => clearInterval(intervalPhotos));
 </script>
-
-<style scoped>
-img {
-  opacity: 0;
-  opacity: 100;
-  transition: opacity 1s ease-in-out;
-}
-</style>
