@@ -3,11 +3,11 @@ import axios from 'axios';
 
 vi.mock('axios');
 //vi.mocked - 'Type helper for TypeScript.'
-const mockedAxios = vi.mocked(axios.get);
+const mockedAxiosGet = vi.mocked(axios.get);
 
 describe('getQuestios', () => {
   beforeEach(() => {
-    mockedAxios.mockResolvedValue({ data: [{ text: 'sample text', id: 1 }] });
+    mockedAxiosGet.mockResolvedValue({ data: [{ text: 'sample text', id: 1 }] });
   });
   it('makes GET request to fetch questions', async () => {
     await getQuestions();
