@@ -19,7 +19,7 @@ const router = createRouter({
       component: () => import('@/views/BlogView.vue')
     },
     {
-      path: '/find/form',
+      path: '/form',
       name: 'form',
       component: () => import('@/views/FormView.vue')
     }
