@@ -18,4 +18,14 @@ describe('actions', () => {
       expect(questionsStore.questions).toEqual([{ text: 'text', id: 1 }]);
     });
   });
+
+  describe('FETCH_ANSWERS', () => {
+    it('fetch date and stores them in constatnt', async () => {
+      mockedAxiosGet.mockResolvedValue({ data: [{ id: 1, selectedAnswer: '4' }] });
+      const questionsStore = useQuestionsStore();
+      await questionsStore.FETCH_ANSWERS();
+
+      expect(questionsStore.answers).toEqual([{ id: 1, selectedAnswer: '4' }]);
+    });
+  });
 });
