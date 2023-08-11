@@ -16,7 +16,7 @@
             <span class="font-semibold text-red-400">person just like you!</span>
           </h3>
           <router-link to="/form">
-            <custom-button text="Go to the form" type="form"></custom-button>
+            <custom-button text="Go to the form" buttonType="form"></custom-button>
           </router-link>
         </div>
       </div>

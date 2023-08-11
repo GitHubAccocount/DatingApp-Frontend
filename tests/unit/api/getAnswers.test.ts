@@ -3,6 +3,7 @@ import axios from 'axios';
 import type { Mock } from 'vitest';
 
 vi.mock('axios');
+// alternative version to 'vi.mocked(axios.get);'
 const axiosGetMock = axios.get as Mock;
 
 describe('getAnswers', () => {

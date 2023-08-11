@@ -1,5 +1,5 @@
 <template>
-  <button :class="type">
+  <button :class="buttonType">
     {{ text }}
   </button>
 </template>
@@ -10,7 +10,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  type: {
+  buttonType: {
     type: String,
     required: false,
     default: 'loginButton',

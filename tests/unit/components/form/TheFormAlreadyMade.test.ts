@@ -34,7 +34,7 @@ describe('TheFormAlreadyMade', () => {
     }) as HTMLButtonElement;
     await userEvent.click(button);
     // window.location = { assign: assignMock as any } as Location;
-    expect(axios.post).toHaveBeenCalled();
+    expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/answers', {});
     expect(window.location.reload).toHaveBeenCalled();
     Object.defineProperty(window, 'location', { configurable: true, value: window.location });
   });

@@ -1,30 +1,94 @@
 {
+  "answers": {},
   "questions": [
-    { "text": "It makes me sad to see a lonely stranger in a group", "id": 1 },
-    { "text": "People make too much of the feelings and sensitivity of animals.", "id": 2 },
-    { "text": "I often find public displays of affection annoying", "id": 3 },
-    { "text": "I am annoyed by unhappy people who are just sorry for themselves", "id": 4 },
-    { "text": "I become nervous if others around me seem to be nervous", "id": 5 },
-    { "text": "I find it silly for people to cry out of happiness", "id": 6 },
-    { "text": "I tend to get emotionally involved with a fnend's problems", "id": 7 },
-    { "text": "Sometimes the words of a love song can move me deeply", "id": 8 },
-    { "text": "I tend to lose control when I am bringing bad news to people", "id": 9 },
-    { "text": "The people around me have a great influence on my moods", "id": 10 },
-    { "text": "Most foreigners I have met seemed cool and unemotional", "id": 11 },
-    { "text": "I would rather be a social worker than work in a job training center", "id": 12 },
-    { "text": "I don't get upset just because a friend is acting upset", "id": 13 },
-    { "text": "I like to watch people open presents", "id": 14 },
-    { "text": "Lonely people are probably unfriendly", "id": 15 },
-    { "text": "Seeing people cry upsets me", "id": 16 },
-    { "text": "Some songs make me happy", "id": 17 },
-    { "text": "I really get involved with the feeilings of the characters in a novel", "id": 18 },
-    { "text": "I get very angry when I see someone being ill-treated", "id": 19 },
-    { "text": "I am able to remain calm even though those around me worry", "id": 20 },
+    {
+      "text": "It makes me sad to see a lonely stranger in a group",
+      "id": 1
+    },
+    {
+      "text": "People make too much of the feelings and sensitivity of animals.",
+      "id": 2
+    },
+    {
+      "text": "I often find public displays of affection annoying",
+      "id": 3
+    },
+    {
+      "text": "I am annoyed by unhappy people who are just sorry for themselves",
+      "id": 4
+    },
+    {
+      "text": "I become nervous if others around me seem to be nervous",
+      "id": 5
+    },
+    {
+      "text": "I find it silly for people to cry out of happiness",
+      "id": 6
+    },
+    {
+      "text": "I tend to get emotionally involved with a fnend's problems",
+      "id": 7
+    },
+    {
+      "text": "Sometimes the words of a love song can move me deeply",
+      "id": 8
+    },
+    {
+      "text": "I tend to lose control when I am bringing bad news to people",
+      "id": 9
+    },
+    {
+      "text": "The people around me have a great influence on my moods",
+      "id": 10
+    },
+    {
+      "text": "Most foreigners I have met seemed cool and unemotional",
+      "id": 11
+    },
+    {
+      "text": "I would rather be a social worker than work in a job training center",
+      "id": 12
+    },
+    {
+      "text": "I don't get upset just because a friend is acting upset",
+      "id": 13
+    },
+    {
+      "text": "I like to watch people open presents",
+      "id": 14
+    },
+    {
+      "text": "Lonely people are probably unfriendly",
+      "id": 15
+    },
+    {
+      "text": "Seeing people cry upsets me",
+      "id": 16
+    },
+    {
+      "text": "Some songs make me happy",
+      "id": 17
+    },
+    {
+      "text": "I really get involved with the feeilings of the characters in a novel",
+      "id": 18
+    },
+    {
+      "text": "I get very angry when I see someone being ill-treated",
+      "id": 19
+    },
+    {
+      "text": "I am able to remain calm even though those around me worry",
+      "id": 20
+    },
     {
       "text": "When a friend starts to talk about his problems, I try to steer the conversation to something else",
       "id": 21
     },
-    { "text": "Another's laughter is not catching for me", "id": 22 },
+    {
+      "text": "Another's laughter is not catching for me",
+      "id": 22
+    },
     {
       "text": "Sometimes at the movies I am amused by the amount of crying and sniffling around me",
       "id": 23
@@ -33,17 +97,41 @@
       "text": "I am able to make decisions without being influenced by people's feelings",
       "id": 24
     },
-    { "text": "I cannot continue to feel OK if people around me are depressed", "id": 25 },
-    { "text": "It is hard for me to see how some things upset people so much", "id": 26 },
-    { "text": "I am very upset when I see an animal in pain", "id": 27 },
-    { "text": "Becoming involved in books or movies is a little silly", "id": 28 },
-    { "text": "It upsets me to see helpless old people", "id": 29 },
-    { "text": "I become more irritated than sympathetic when I see someone's tears", "id": 30 },
-    { "text": "I become very involved when I watch a movie", "id": 31 },
+    {
+      "text": "I cannot continue to feel OK if people around me are depressed",
+      "id": 25
+    },
+    {
+      "text": "It is hard for me to see how some things upset people so much",
+      "id": 26
+    },
+    {
+      "text": "I am very upset when I see an animal in pain",
+      "id": 27
+    },
+    {
+      "text": "Becoming involved in books or movies is a little silly",
+      "id": 28
+    },
+    {
+      "text": "It upsets me to see helpless old people",
+      "id": 29
+    },
+    {
+      "text": "I become more irritated than sympathetic when I see someone's tears",
+      "id": 30
+    },
+    {
+      "text": "I become very involved when I watch a movie",
+      "id": 31
+    },
     {
       "text": "I often find that I can remain cool in spite of the excitement around me",
       "id": 32
     },
-    { "text": "Little children sometimes cry for no apparent reason", "id": 23 }
+    {
+      "text": "Little children sometimes cry for no apparent reason",
+      "id": 33
+    }
   ]
 }

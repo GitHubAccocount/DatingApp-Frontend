@@ -10,7 +10,7 @@
     </p>
     <ol>
       <li v-for="question in questions" :key="question.id" class="py-2">
-        <label :for="question.id.toString()" class="pb-2 pr-2">
+        <label :for="question.id.toString()" class="pb-2 pr-2" role="labelname">
           {{ question.id }}. {{ question.text }}</label
         >
         <select
@@ -62,7 +62,7 @@ const numbers = ref([
   { answer: 4, selected: false, disabled: false }
 ]);
 
-const formData = () => {
+function formData() {
   const formData: { id: number; selectedAnswer: string }[] = [];
   questions.value.forEach((question) => {
     const selectedQuestion = document.getElementById(question.id.toString()) as HTMLSelectElement;
@@ -73,9 +73,8 @@ const formData = () => {
       });
     }
   });
-  console.log(formData);
   return formData;
-};
+}
 
 function Submit() {
   const baseUrl = import.meta.env.VITE_APP_API_URL;
