@@ -12,8 +12,8 @@
         <div class="row-span-1 flex flex-col items-center pt-6 lg:col-span-1 lg:justify-center">
           <h1 class="text-xl font-bold xs:text-2xl sm:text-4xl">Want to find your other half?</h1>
           <h3 class="pb-6 text-xs xs:text-base sm:text-2xl">
-            Fill the form and find the
-            <span class="font-semibold text-red-400">person just like you!</span>
+            Fill the form and find
+            <span class="font-semibold text-red-400">the person just like you!</span>
           </h3>
           <router-link to="/form">
             <custom-button text="Go to the form" buttonType="form"></custom-button>
