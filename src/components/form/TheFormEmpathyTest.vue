@@ -44,6 +44,7 @@ import CustomButton from '../Shared/CustomButton.vue';
 import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 const questionsStore = useQuestionsStore();
 onMounted(questionsStore.FETCH_QUESTIONS);
@@ -90,6 +91,7 @@ function checkValue() {
   return checkValue.length === 0;
 }
 
+const router = useRouter();
 function Submit() {
   if (checkValue()) {
     const baseUrl = import.meta.env.VITE_APP_API_URL;
@@ -102,6 +104,8 @@ function Submit() {
       .catch((error) => {
         console.log(error);
       });
+    alert('Form has been sent successfully!');
+    router.push({ path: 'form/2' });
   } else {
     alert('Please, answer all questions :)');
   }
