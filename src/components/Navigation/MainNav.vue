@@ -3,7 +3,7 @@
     <nav class="flex h-full w-full items-center justify-between bg-white">
       <div class="flex h-full items-center">
         <div class="hidden pt-2 md:inline md:pl-6">
-          <img class="h-auto w-full md:w-14" src="assets/date-app_logo2.png" />
+          <img class="h-auto w-full md:w-14" :src="logoPath" />
         </div>
 
         <font-awesome-icon
@@ -46,7 +46,7 @@
           </li>
         </ul>
         <div class="pl-3 pt-2 md:hidden">
-          <img class="h-10 w-11 md:w-14" src="assets/date-app_logo2.png" />
+          <img class="h-10 w-11 md:w-14" :src="logoPath" />
         </div>
       </div>
 
@@ -63,8 +63,12 @@ import CustomButton from '@/components/Shared/CustomButton.vue';
 import type { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import logoImage from '/assets/date-app_logo2.png';
 
 import { useUserStore } from '@/stores/user';
+
+// absolute path, so the logo is displayed when path changes (eg. .../form/2)
+const logoPath = ref(logoImage);
 
 const menuItems = ref([
   { text: 'Home', url: '/', name: 'home' },
