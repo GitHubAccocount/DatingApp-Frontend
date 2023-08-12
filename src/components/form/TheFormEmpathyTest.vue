@@ -16,7 +16,10 @@
         <select
           :id="question.id.toString()"
           class="rounded-md border p-1 ring-1 focus:border-red-400 focus:outline-red-400 focus:ring-red-400"
-          @change="formData()"
+          @change="
+            formData();
+            checkValue();
+          "
         >
           <option
             v-for="number in numbers"
@@ -76,16 +79,33 @@ function formData() {
   return formData;
 }
 
-function Submit() {
-  const baseUrl = import.meta.env.VITE_APP_API_URL;
-  const url = `${baseUrl}/answers`;
-  axios
-    .post(url, formData())
-    .then((resp) => {
-      console.log(resp.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+function checkValue() {
+  const checkValue = [];
+  questions.value.forEach((question) => {
+    const selectedQuestion = document.getElementById(question.id.toString()) as HTMLSelectElement;
+    if (selectedQuestion.value === 'select answer') {
+      checkValue.push('checker');
+    }
+  });
+  return checkValue.length === 0;
 }
+
+function Submit() {
+  if (checkValue()) {
+    const baseUrl = import.meta.env.VITE_APP_API_URL;
+    const url = `${baseUrl}/answers`;
+    axios
+      .post(url, formData())
+      .then((resp) => {
+        console.log(resp.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    alert('Please, answer all questions :)');
+  }
+}
+
+defineExpose({ Submit });
 </script>
