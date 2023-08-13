@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="" class="w-full">
+  <form @submit.prevent="Submit()" class="w-full">
     <h1 class="mb-2 text-3xl font-bold">Additional Information</h1>
     <p class="text-lg">
       Say something more about yourself, so we can find
@@ -85,7 +85,7 @@
     </div>
 
     <div class="flex w-full justify-center pb-6 pt-3">
-      <custom-button type="submit" text="Submit" class=""></custom-button>
+      <custom-button type="submit" text="Submit"></custom-button>
     </div>
   </form>
 </template>
@@ -96,6 +96,13 @@ import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+
+interface FormData {
+  gender?: string;
+  empathyLevel?: string;
+  lookingFor?: string;
+  description?: string;
+}
 
 const gender = ref('');
 const empathyLevel = ref('');
@@ -141,34 +148,45 @@ const empathyLevelChoose = ref([
   }
 ]);
 
-// function checkValue() {
-//   const checkValue = [];
-//   questions.value.forEach((question) => {
-//     const selectedQuestion = document.getElementById(question.id.toString()) as HTMLSelectElement;
-//     if (selectedQuestion.value === 'select answer') {
-//       checkValue.push('checker');
-//     }
-//   });
-//   return checkValue.length === 0;
-// }
+const formData = computed<FormData[]>(() => {
+  return [
+    { gender: gender.value },
+    { empathyLevel: empathyLevel.value },
+    { lookingFor: lookingFor.value },
+    { description: description.value }
+  ];
+});
 
-// const router = useRouter();
-// function Submit() {
-//   if (checkValue()) {
-//     const baseUrl = import.meta.env.VITE_APP_API_URL;
-//     const url = `${baseUrl}/answers`;
-//     axios
-//       .post(url, )
-//       .then((resp) => {
-//         console.log(resp.data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//     alert('Form has been sent successfully!');
-//     router.push({ path: 'form/2' });
-//   } else {
-//     alert('Please, answer all questions :)');
-//   }
-// }
+const checkValue = () => {
+  let checker = true;
+  formData.value.forEach((data: object) => {
+    const answers = Object.values(data);
+    console.log(answers);
+    if (answers[0] === '') {
+      checker = false;
+    }
+  });
+
+  return checker;
+};
+
+const router = useRouter();
+function Submit() {
+  if (checkValue()) {
+    const baseUrl = import.meta.env.VITE_APP_API_URL;
+    const url = `${baseUrl}/personalInfo`;
+    axios
+      .post(url, formData.value)
+      .then((resp) => {
+        console.log(resp.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    alert('Form has been sent successfully!');
+    router.push({ path: '/find' });
+  } else {
+    alert('Please, answer all questions :)');
+  }
+}
 </script>
