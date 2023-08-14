@@ -12,7 +12,14 @@
       <label for="female" class="cursor-pointer pl-2">Female</label>
     </div>
     <div class="w-full p-1">
-      <input type="radio" id="male" v-model="gender" value="male" class="accent-red-400" />
+      <input
+        type="radio"
+        id="male"
+        v-model="gender"
+        value="male"
+        class="accent-red-400"
+        data-testid="firstMale"
+      />
       <label for="male" class="cursor-pointer pl-2">Male</label>
     </div>
 
@@ -24,6 +31,7 @@
         v-model="lookingFor"
         value="female"
         class="accent-red-400"
+        data-testid="secondFemale"
       />
       <label for="lookingForFemale" class="cursor-pointer pl-2">Female</label>
     </div>
@@ -78,6 +86,7 @@
         <span class="text-red-400">the person just like you!</span>
       </p>
       <textarea
+        data-testid="textarea"
         v-model="description"
         placeholder="Who are you? What hobbies do you have? Do you like books? Or maybe sports?"
         class="h-32 w-full rounded-md p-1 focus:outline-red-400"
