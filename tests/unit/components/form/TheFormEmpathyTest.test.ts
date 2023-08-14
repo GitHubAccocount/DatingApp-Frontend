@@ -6,20 +6,28 @@ import { useQuestionsStore } from '@/stores/questions';
 import userEvent from '@testing-library/user-event';
 import { mount } from '@vue/test-utils';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 vi.mock('axios');
 const axiosPostMock = axios.post as Mock;
+
+vi.mock('vue-router');
+const useRouterMock = useRouter as Mock;
 
 describe('TheFormEmpathyTest', () => {
   beforeEach(() => {
     axiosPostMock.mockResolvedValue([]);
   });
   const renderTheFormEmpathyTest = () => {
+    const push = vi.fn();
+    useRouterMock.mockReturnValue({ push });
     render(TheFormEmpathyTest, {
       global: {
         plugins: [createTestingPinia()]
       }
     });
+
+    return { push };
   };
 
   it('renders questions', async () => {
@@ -95,9 +103,10 @@ describe('TheFormEmpathyTest', () => {
   // });
 
   it('submits the form', async () => {
-    renderTheFormEmpathyTest();
+    const { push } = renderTheFormEmpathyTest();
     const button = screen.queryByRole('button', { name: /submit/i }) as HTMLButtonElement;
     await userEvent.click(button);
     expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/answers', []);
+    expect(push).toHaveBeenCalledWith({ path: 'form/2' });
   });
 });
