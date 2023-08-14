@@ -103,6 +103,7 @@ describe('TheFormEmpathyTest', () => {
   // });
 
   it('submits the form', async () => {
+    global.alert = vi.fn();
     const { push } = renderTheFormEmpathyTest();
     const button = screen.queryByRole('button', { name: /submit/i }) as HTMLButtonElement;
     await userEvent.click(button);
