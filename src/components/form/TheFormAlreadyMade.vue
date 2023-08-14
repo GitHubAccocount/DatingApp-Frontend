@@ -20,12 +20,18 @@ function restartData() {
   const urlAnswers = `${baseUrl}/answers`;
   const urlpersonalInfo = `${baseUrl}/personalInfo`;
   axios
-    .all([axios.post(urlAnswers, {}), axios.post(urlpersonalInfo, {})])
-    .then(
-      axios.spread((dataA, dataI) => {
-        console.log('Answers', dataA, 'PersonalInfo', dataI);
-      })
-    )
+    .post(urlAnswers, {})
+    .then((resp) => {
+      console.log(resp.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  axios
+    .post(urlpersonalInfo, {})
+    .then((resp) => {
+      console.log(resp.data);
+    })
     .catch((error) => {
       console.log(error);
     });
