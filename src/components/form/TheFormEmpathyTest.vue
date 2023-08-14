@@ -110,6 +110,4 @@ function Submit() {
     alert('Please, answer all questions :)');
   }
 }
-
-defineExpose({ Submit });
 </script>
