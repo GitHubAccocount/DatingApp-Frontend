@@ -8,4 +8,5 @@
 
 <script lang="ts" setup>
 import TheFormPersonalTest from './TheFormPersonalTest.vue';
+import TheFormPersonalMadeAlready from './TheFormPersonalMadeAlready.vue';
 </script>
