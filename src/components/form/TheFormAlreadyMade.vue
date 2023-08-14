@@ -17,12 +17,15 @@ import CustomButton from '@/components/Shared/CustomButton.vue';
 
 function restartData() {
   const baseUrl = import.meta.env.VITE_APP_API_URL;
-  const url = `${baseUrl}/answers`;
+  const urlAnswers = `${baseUrl}/answers`;
+  const urlpersonalInfo = `${baseUrl}/personalInfo`;
   axios
-    .post(url, {})
-    .then((resp) => {
-      console.log(resp.data);
-    })
+    .all([axios.post(urlAnswers, {}), axios.post(urlpersonalInfo, {})])
+    .then(
+      axios.spread((dataA, dataI) => {
+        console.log('Answers', dataA, 'PersonalInfo', dataI);
+      })
+    )
     .catch((error) => {
       console.log(error);
     });
