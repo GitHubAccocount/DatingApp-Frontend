@@ -14,8 +14,8 @@
 import CustomButton from '../Shared/CustomButton.vue';
 import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const redirect = () => {
-  const router = useRouter();
   router.push({ path: '/form' });
 };
 </script>
