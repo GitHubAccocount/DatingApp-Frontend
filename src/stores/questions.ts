@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import getQuestions from '@/api/getQuestions';
 import getAnswers from '@/api/getAnswers';
+import getPersonalInfo from '@/api/getPersonalInfo';
 import { ref } from 'vue';
-import type { Question, Answers } from '@/api/types';
+import type { Question, Answers, PersonalInfo } from '@/api/types';
 
 export const useQuestionsStore = defineStore('questions', () => {
   const questions = ref<Question[]>([]);
@@ -17,5 +18,11 @@ export const useQuestionsStore = defineStore('questions', () => {
     answers.value = fetchedAnswers;
   };
 
-  return { questions, answers, FETCH_QUESTIONS, FETCH_ANSWERS };
+  const personalInfo = ref<PersonalInfo[]>([]);
+  const FETCH_PERSONAL_INFO = async () => {
+    const fetchPersonalInfo = await getPersonalInfo();
+    personalInfo.value = fetchPersonalInfo;
+  };
+
+  return { questions, answers, personalInfo, FETCH_QUESTIONS, FETCH_ANSWERS, FETCH_PERSONAL_INFO };
 });
