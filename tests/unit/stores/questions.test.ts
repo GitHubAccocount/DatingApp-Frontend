@@ -28,4 +28,14 @@ describe('actions', () => {
       expect(questionsStore.answers).toEqual([{ id: 1, selectedAnswer: '4' }]);
     });
   });
+
+  describe('FETCH_PERSONAL_INFO', () => {
+    it('fetch date and stores them in constant', async () => {
+      mockedAxiosGet.mockResolvedValue({ data: [{ gender: 'F' }] });
+      const questionsStore = useQuestionsStore();
+      await questionsStore.FETCH_PERSONAL_INFO();
+
+      expect(questionsStore.personalInfo).toEqual([{ gender: 'F' }]);
+    });
+  });
 });
