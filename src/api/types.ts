@@ -8,7 +8,7 @@ export interface Answers {
   selectedAnswer: string;
 }
 
-export interface personalInfo {
+export interface PersonalInfo {
   gender: string;
   empathyLevel: string;
   lookingFor: string;
