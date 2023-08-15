@@ -18,6 +18,9 @@ describe('TheFormEmpathyTest', () => {
   beforeEach(() => {
     axiosPostMock.mockResolvedValue([]);
   });
+  afterEach(() => {
+    axiosPostMock.mockReset();
+  });
   const renderTheFormEmpathyTest = () => {
     const push = vi.fn();
     useRouterMock.mockReturnValue({ push });
@@ -102,12 +105,49 @@ describe('TheFormEmpathyTest', () => {
 
   // });
 
-  it('submits the form', async () => {
+  // it('submits the form', async () => {
+  //   global.alert = vi.fn();
+  //   const { push } = renderTheFormEmpathyTest();
+  //   const button = screen.queryByRole('button', { name: /submit/i }) as HTMLButtonElement;
+  //   await userEvent.click(button);
+  //   expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/answers', []);
+  //   expect(push).toHaveBeenCalledWith({ path: 'form/2' });
+  // });
+
+  it('submits the form and push path', async () => {
     global.alert = vi.fn();
     const { push } = renderTheFormEmpathyTest();
+
+    const questionStore = useQuestionsStore();
+    questionStore.questions = [{ id: 1, text: 'Sample question' }];
+
+    const liQuestion = (await screen.findByRole('combobox')) as HTMLSelectElement;
+    await userEvent.selectOptions(liQuestion, '4');
+
     const button = screen.queryByRole('button', { name: /submit/i }) as HTMLButtonElement;
     await userEvent.click(button);
-    expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/answers', []);
+
+    expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/answers', [
+      { id: 1, selectedAnswer: '4' }
+    ]);
     expect(push).toHaveBeenCalledWith({ path: 'form/2' });
+  });
+
+  it('doesnt submits the form and doesnt push path', async () => {
+    global.alert = vi.fn();
+    const { push } = renderTheFormEmpathyTest();
+
+    const questionStore = useQuestionsStore();
+    questionStore.questions = [{ id: 1, text: 'Sample question' }];
+
+    const liQuestion = (await screen.findByRole('combobox')) as HTMLSelectElement;
+    await userEvent.selectOptions(liQuestion, 'select answer');
+
+    const button = screen.queryByRole('button', { name: /submit/i }) as HTMLButtonElement;
+    await userEvent.click(button);
+
+    expect(axios.post).not.toHaveBeenCalled();
+    expect(push).not.toHaveBeenCalled();
+    expect(global.alert).toHaveBeenCalled();
   });
 });
