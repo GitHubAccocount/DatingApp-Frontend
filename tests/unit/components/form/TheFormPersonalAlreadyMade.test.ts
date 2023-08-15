@@ -15,9 +15,9 @@ describe('TheFormPersonalAlreadyMade', () => {
   });
 
   it('redirect user to /form page', async () => {
-    render(TheFormPersonalAlreadyMade);
     const push = vi.fn();
     useRouterMock.mockReturnValue({ push });
+    render(TheFormPersonalAlreadyMade);
 
     const button = screen.queryByRole('button', { name: /redirect me/i }) as HTMLButtonElement;
     await userEvent.click(button);
