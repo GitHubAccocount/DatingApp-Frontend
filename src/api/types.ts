@@ -9,8 +9,8 @@ export interface Answers {
 }
 
 export interface PersonalInfo {
-  gender: string;
-  empathyLevel: string;
-  lookingFor: string;
-  description: string;
+  gender?: string;
+  empathyLevel?: string;
+  lookingFor?: string;
+  description?: string;
 }
