@@ -10,7 +10,10 @@ import findYourLoveBeforeForm from '@/components/findYourLove/findYourLoveBefore
 import findYourLoveAfterForm from '@/components/findYourLove/findYourLoveAfterForm.vue';
 import { useQuestionsStore } from '@/stores/questions';
 
-const useQuestions = useQuestionsStore();
-const personalInfo = useQuestions.personalInfo;
-const answers = useQuestions.answers;
+const questionsStore = useQuestionsStore();
+
+const personalInfo = questionsStore.personalInfo;
+const answers = questionsStore.answers;
+
+console.log('p: ', personalInfo, 'a: ', answers);
 </script>
