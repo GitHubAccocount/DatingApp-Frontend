@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an find page</h1>
-  </div>
+  <find-your-love></find-your-love>
 </template>
+
+<script lang="ts" setup>
+import findYourLove from '@/components/findYourLove/findYourLove.vue';
+</script>
