@@ -23,6 +23,4 @@ onMounted(questionsStore.FETCH_ANSWERS);
 const answers = computed(() => {
   return questionsStore.answers;
 });
-
-console.log('p: ', personalInfo.value.length, 'a: ', answers.value.length);
 </script>
