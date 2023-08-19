@@ -37,6 +37,4 @@ function restartData() {
     });
   window.location.reload();
 }
-
-defineExpose({ restartData });
 </script>
