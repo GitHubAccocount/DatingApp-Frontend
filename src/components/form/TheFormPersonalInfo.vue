@@ -13,8 +13,16 @@
 import TheFormPersonalTest from './TheFormPersonalTest.vue';
 import TheFormPersonalAlreadyMade from './TheFormPersonalAlreadyMade.vue';
 import { useQuestionsStore } from '@/stores/questions';
+import { computed, onMounted } from 'vue';
 
-const useQuestions = useQuestionsStore();
-const personalInfo = useQuestions.personalInfo;
-const answers = useQuestions.answers;
+const questionsStore = useQuestionsStore();
+
+onMounted(questionsStore.FETCH_PERSONAL_INFO);
+const personalInfo = computed(() => {
+  return questionsStore.personalInfo;
+});
+onMounted(questionsStore.FETCH_ANSWERS);
+const answers = computed(() => {
+  return questionsStore.answers;
+});
 </script>
