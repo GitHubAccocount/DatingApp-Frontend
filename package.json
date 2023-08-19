@@ -9,23 +9,25 @@
     "test:unit": "vitest --environment jsdom --coverage --watch",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "server": "json-server --watch db.json"
+    "server": "json-server --watch db.json",
+    "generate": "json-server ./generate.js --port 3001"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.4.0",
+    "faker": "^5.5.3",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
     "@pinia/testing": "^0.1.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/user-event": "^14.4.3",
     "@testing-library/vue": "^7.0.0",
+    "@types/faker": "^6.6.9",
     "@types/jsdom": "^21.1.1",
     "@types/node": "^18.17.0",
     "@vitejs/plugin-vue": "^4.0.0",
