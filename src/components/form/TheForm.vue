@@ -14,9 +14,5 @@ import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, ref } from 'vue';
 
 const questionsStore = useQuestionsStore();
-
-onMounted(questionsStore.FETCH_ANSWERS);
-const answers = computed(() => {
-  return questionsStore.answers;
-});
+const answers = questionsStore.answers;
 </script>

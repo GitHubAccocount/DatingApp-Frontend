@@ -24,5 +24,12 @@ export const useQuestionsStore = defineStore('questions', () => {
     personalInfo.value = fetchPersonalInfo;
   };
 
-  return { questions, answers, personalInfo, FETCH_QUESTIONS, FETCH_ANSWERS, FETCH_PERSONAL_INFO };
+  return {
+    questions,
+    answers,
+    personalInfo,
+    FETCH_QUESTIONS,
+    FETCH_ANSWERS,
+    FETCH_PERSONAL_INFO
+  };
 });
