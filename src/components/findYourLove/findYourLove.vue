@@ -1,8 +1,10 @@
 <template>
-  <find-your-love-before-form
-    v-if="personalInfo.length === 0 && answers.length === 0"
-  ></find-your-love-before-form>
-  <find-your-love-after-form v-else></find-your-love-after-form>
+  <section class="mx-6">
+    <find-your-love-before-form
+      v-if="personalInfo.length === 0 && answers.length === 0"
+    ></find-your-love-before-form>
+    <find-your-love-after-form v-else></find-your-love-after-form>
+  </section>
 </template>
 
 <script lang="ts" setup>
