@@ -27,6 +27,11 @@ const router = createRouter({
       path: '/form/2',
       name: 'form2',
       component: () => import('@/views/FormPersonalView.vue')
+    },
+    {
+      path: `/find/:id`,
+      name: 'user',
+      component: () => import('@/views/SpecificUser.vue')
     }
   ]
 });
