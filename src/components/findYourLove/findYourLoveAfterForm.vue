@@ -1,7 +1,6 @@
 <template>
   <section>
-    <h1>Hello</h1>
-    <div class="grid grid-cols-2 gap-4" ref="scrollComponent">
+    <div class="grid grid-cols-2 gap-4 pb-5" ref="scrollComponent">
       <div
         v-for="user in usersOnScroll"
         :key="user.id"
