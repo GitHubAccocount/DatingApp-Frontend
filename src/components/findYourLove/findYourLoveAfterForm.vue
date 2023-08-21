@@ -13,7 +13,6 @@
           <div class="bg-red-400 p-2 font-bold text-white">
             <p class="inline pr-1">{{ user.firstName }},</p>
             <p class="inline">{{ user.age }}</p>
-            <p>{{ user.id }}</p>
           </div>
         </router-link>
       </div>
@@ -22,18 +21,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '@/stores/user';
 import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
-const userStore = useUserStore();
-onMounted(userStore.FETCH_USERS);
+const questionsStore = useQuestionsStore();
+onMounted(questionsStore.FETCH_USERS);
 
 const users = computed(() => {
-  return userStore.users;
+  return questionsStore.users;
 });
 
-const questionsStore = useQuestionsStore();
 onMounted(questionsStore.FETCH_PERSONAL_INFO);
 
 const personalInfo = computed(() => {

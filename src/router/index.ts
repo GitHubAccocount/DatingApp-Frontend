@@ -1,4 +1,4 @@
-import { useUserStore } from '@/stores/user';
+import { useQuestionsStore } from '@/stores/questions';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -17,7 +17,7 @@ const router = createRouter({
       // /home then no problem. But after refreshing there was no data rendered.
       // The code below solves the problem
       component: async () => {
-        const userStore = useUserStore();
+        const userStore = useQuestionsStore();
         await userStore.FETCH_USERS();
         return import('@/views/FindView.vue');
       }
