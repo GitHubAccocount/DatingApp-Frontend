@@ -1,6 +1,9 @@
 <template>
   <section>
-    <div class="grid grid-cols-2 gap-4 pb-5" ref="scrollComponent">
+    <div
+      class="grid grid-cols-2 gap-4 pb-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+      ref="scrollComponent"
+    >
       <div
         v-for="user in usersOnScroll"
         :key="user.id"
@@ -8,7 +11,7 @@
       >
         <router-link :to="'/find/' + user.id">
           <div>
-            <img :src="user.profileImg" />
+            <img :src="user.profileImg" alt="user photo" />
           </div>
           <div class="bg-red-400 p-2 font-bold text-white">
             <p class="inline pr-1">{{ user.firstName }},</p>
@@ -22,13 +25,13 @@
 
 <script lang="ts" setup>
 import { useQuestionsStore } from '@/stores/questions';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const questionsStore = useQuestionsStore();
 onMounted(questionsStore.FETCH_USERS);
 
 const users = computed(() => {
-  return questionsStore.users;
+  return questionsStore.FILTERED_USERS;
 });
 
 onMounted(questionsStore.FETCH_PERSONAL_INFO);
@@ -48,6 +51,11 @@ const loadMoreUsers = () => {
   let newUsersOnScroll = users.value.slice(start, end);
   usersOnScroll.value.push(...newUsersOnScroll);
 };
+
+// during test userOnScroll didn't update, watcher fix the problem with updating
+watch(users, (newUsers) => {
+  usersOnScroll.value = newUsers.slice(start, end);
+});
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
