@@ -31,7 +31,6 @@ const userStore = useUserStore();
 const selectedAge = ref<string[]>([]);
 const selectAge = () => {
   userStore.SELECT_AGE(selectedAge.value);
-  console.log(selectedAge.value);
 };
 
 onUnmounted(() => {
