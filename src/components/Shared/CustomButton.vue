@@ -1,10 +1,13 @@
 <template>
   <button :class="buttonType">
+    <font-awesome-icon v-if="icon" :icon="icon" class="pr-1"></font-awesome-icon>
     {{ text }}
   </button>
 </template>
 
 <script lang="ts" setup>
+import { arrayBuffer } from 'stream/consumers';
+
 const props = defineProps({
   text: {
     type: String,
@@ -17,6 +20,10 @@ const props = defineProps({
     validator(value: string) {
       return ['loginButton', 'form'].includes(value);
     }
+  },
+  icon: {
+    type: Array,
+    default: null
   }
 });
 </script>
