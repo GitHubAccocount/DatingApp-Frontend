@@ -1,5 +1,8 @@
 <template>
   <section>
+    <div>
+      <find-your-love-filter></find-your-love-filter>
+    </div>
     <div
       class="grid grid-cols-2 gap-4 pb-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       ref="scrollComponent"
@@ -26,6 +29,7 @@
 <script lang="ts" setup>
 import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import findYourLoveFilter from '@/components/findYourLove/findYourLoveFilter/findYourLoveFilter.vue';
 
 const questionsStore = useQuestionsStore();
 onMounted(questionsStore.FETCH_USERS);
