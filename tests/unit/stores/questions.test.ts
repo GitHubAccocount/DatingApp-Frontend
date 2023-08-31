@@ -2,6 +2,8 @@ import { setActivePinia, createPinia } from 'pinia';
 import { useQuestionsStore } from '@/stores/questions';
 import { sampleUsers } from 'tests/utils/sampleUsers';
 import axios from 'axios';
+import { useUserStore } from '@/stores/user';
+import type { User } from '@/api/types';
 
 vi.mock('axios');
 const mockedAxiosGet = vi.mocked(axios.get);
@@ -142,6 +144,28 @@ describe('getters', () => {
     });
   });
 
+  describe('SELECTED_AGE', () => {
+    it('returns ages', () => {
+      const userStore = useUserStore();
+      const questionsStore = useQuestionsStore();
+      userStore.selectedAge = ['Adulthood'];
+
+      expect(questionsStore.SELECTED_AGE).toEqual(['Adulthood']);
+    });
+  });
+
+  describe('FILTER_BY_AGE', () => {
+    it('filters users by age', () => {
+      const userStore = useUserStore();
+      const questionsStore = useQuestionsStore();
+      userStore.selectedAge = ['LateAdulthood'];
+
+      const user = sampleUsers[0];
+
+      expect(questionsStore.FILTER_BY_AGE(user)).toBe(true);
+    });
+  });
+
   describe('FILTERED_USERS', () => {
     it('filters users', () => {
       const questionsStore = useQuestionsStore();
@@ -149,7 +173,7 @@ describe('getters', () => {
       questionsStore.personalInfo = [
         { gender: 'female', empathyLevel: 'low', lookingFor: 'female', description: 'aa' }
       ];
-      questionsStore.users = sampleUsers();
+      questionsStore.users = sampleUsers;
 
       expect(questionsStore.FILTERED_USERS).toEqual([
         {
@@ -170,7 +194,7 @@ describe('getters', () => {
       questionsStore.personalInfo = [
         { gender: 'male', empathyLevel: 'low', lookingFor: 'male', description: 'aa' }
       ];
-      questionsStore.users = sampleUsers();
+      questionsStore.users = sampleUsers;
 
       expect(questionsStore.FILTERED_USERS).toEqual([
         {
