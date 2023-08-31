@@ -7,6 +7,8 @@ import { useUserStore } from '@/stores/user';
 import { useRoute } from 'vue-router';
 import type { Mock } from 'vitest';
 import { RouterLinkStub } from '@vue/test-utils';
+import userEvent from '@testing-library/user-event';
+import { nextTick } from 'vue';
 vi.mock('vue-router');
 const useRouteMock = useRoute as Mock;
 
@@ -94,5 +96,21 @@ describe('MainNav', () => {
       });
       expect(wrapper.vm.inOutIcon).toEqual(['fas', 'xmark']);
     });
+  });
+
+  it('closes menu on outside click', async () => {
+    renderMainNAv();
+    const userStore = useUserStore();
+    userStore.showNav = true;
+
+    document.dispatchEvent(new MouseEvent('click'));
+    await nextTick();
+
+    // I wanted to use code:
+    // const outsideElemnt = document.createElement('div');
+    // await userEvent.click(outsideElemnt);
+    // but I got error: AssertionError: expected "spy" to be called at least once
+
+    expect(userStore.SHOW_NAV).toHaveBeenCalled();
   });
 });
