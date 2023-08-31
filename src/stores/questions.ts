@@ -5,6 +5,7 @@ import getPersonalInfo from '@/api/getPersonalInfo';
 import getUsers from '@/api/getUsers';
 import { computed, ref } from 'vue';
 import type { Question, Answers, PersonalInfo, User } from '@/api/types';
+import { useUserStore } from './user';
 
 export const useQuestionsStore = defineStore('questions', () => {
   const questions = ref<Question[]>([]);
@@ -85,6 +86,39 @@ export const useQuestionsStore = defineStore('questions', () => {
     }
   });
 
+  const allAge = ref([
+    { id: 'VaryYoungAdulthood', value: '18-25' },
+    { id: 'YoungAdulthood', value: '25-35' },
+    { id: 'MidAdulthood', value: '35-45' },
+    { id: 'Adulthood', value: '45-55' },
+    { id: 'LateAdulthood', value: '55+' }
+  ]);
+
+  const SELECTED_AGE = computed(() => {
+    const userStore = useUserStore();
+    return userStore.selectedAge;
+  });
+
+  const FILTER_BY_AGE = (user: User) => {
+    if (SELECTED_AGE.value.length === 0) {
+      return true;
+    } else if (
+      user.age > 18 &&
+      user.age <= 25 &&
+      SELECTED_AGE.value.includes('VaryYoungAdulthood')
+    ) {
+      return true;
+    } else if (user.age >= 25 && user.age <= 35 && SELECTED_AGE.value.includes('YoungAdulthood')) {
+      return true;
+    } else if (user.age >= 35 && user.age <= 45 && SELECTED_AGE.value.includes('MidAdulthood')) {
+      return true;
+    } else if (user.age >= 45 && user.age <= 55 && SELECTED_AGE.value.includes('Adulthood')) {
+      return true;
+    } else if (user.age >= 55 && SELECTED_AGE.value.includes('LateAdulthood')) {
+      return true;
+    }
+  };
+
   const FILTERED_USERS = computed(() => {
     return users.value
       .filter((user) => {
@@ -119,6 +153,9 @@ export const useQuestionsStore = defineStore('questions', () => {
         ) {
           return user.empathyLevel === USER_EMPATHY_LEVEL_MALE.value;
         }
+      })
+      .filter((user) => {
+        return FILTER_BY_AGE(user);
       });
   });
 
@@ -127,17 +164,20 @@ export const useQuestionsStore = defineStore('questions', () => {
     answers,
     personalInfo,
     users,
+    allAge,
     TOTAL_SCORE,
     EXTRACT_MINUS_SCORE,
     EXTRACT_PLUS_SCORE,
     MINUS_SCORE,
     PLUS_SCORE,
+    SELECTED_AGE,
     FILTERED_USERS,
     USER_EMPATHY_LEVEL_MALE,
     USER_EMPATHY_LEVEL_FEMALE,
     FETCH_QUESTIONS,
     FETCH_ANSWERS,
     FETCH_PERSONAL_INFO,
+    FILTER_BY_AGE,
     FETCH_USERS
   };
 });
