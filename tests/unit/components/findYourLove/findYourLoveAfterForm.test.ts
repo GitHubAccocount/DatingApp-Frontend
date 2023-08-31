@@ -29,7 +29,7 @@ describe('findYourLoveAfterForm', () => {
     questionsStore.personalInfo = [
       { gender: 'female', empathyLevel: 'low', lookingFor: 'female', description: 'aa' }
     ];
-    questionsStore.users = sampleUsers();
+    questionsStore.users = sampleUsers;
 
     const routerLink = (await screen.findByAltText('user photo')) as HTMLElement;
     expect(routerLink).toBeInTheDocument();
