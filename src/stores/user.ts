@@ -7,5 +7,19 @@ export const useUserStore = defineStore('user', () => {
     return (showNav.value = !showNav.value);
   };
 
-  return { showNav, SHOW_NAV };
+  const showFilter = ref(false);
+  const SHOW_FILTER = (): boolean => {
+    return (showFilter.value = !showFilter.value);
+  };
+
+  const selectedAge = ref<string[]>([]);
+  const SELECT_AGE = (ages: string[]) => {
+    selectedAge.value = ages;
+  };
+
+  const CLEAR_SELECTION = () => {
+    selectedAge.value = [];
+  };
+
+  return { showNav, showFilter, selectedAge, SHOW_NAV, SHOW_FILTER, SELECT_AGE, CLEAR_SELECTION };
 });
