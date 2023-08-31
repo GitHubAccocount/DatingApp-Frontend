@@ -9,6 +9,7 @@
           :icon="['fas', 'xmark']"
           @click="SHOW_FILTER"
           size="2xl"
+          role="button"
         ></font-awesome-icon>
       </div>
       <collapsible-accordion accordion-title="Age"></collapsible-accordion>
