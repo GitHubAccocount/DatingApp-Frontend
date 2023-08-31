@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky left-0 right-0 top-0 mb-8 h-16 shadow-lg 2xl:h-24">
+  <header class="sticky left-0 right-0 top-0 mb-8 h-16 shadow-lg 2xl:h-24" ref="headerMenu">
     <nav class="flex h-full w-full items-center justify-between bg-white">
       <div class="flex h-full items-center">
         <div class="hidden pt-2 md:inline md:pl-6">
@@ -61,7 +61,7 @@
 import CustomButton from '@/components/Shared/CustomButton.vue';
 
 import type { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { computed, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import logoImage from '/assets/date-app_logo2.png';
 
@@ -95,6 +95,22 @@ const route = useRoute();
 const isCurrentRoute = (url: string) => {
   return route.path === url;
 };
+
+const headerMenu = ref<HTMLElement | null>(null);
+
+const closeMenuOnOutsideClick = (event: MouseEvent) => {
+  if (headerMenu.value && !headerMenu.value.contains(event.target as Node) && showNav.value) {
+    SHOW_NAV();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', closeMenuOnOutsideClick);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeMenuOnOutsideClick);
+});
 
 // Components using <script setup> are closed by default
 // that's why defineExpose compiler is used here so inOutIcon computed value
