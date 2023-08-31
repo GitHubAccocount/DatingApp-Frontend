@@ -24,11 +24,37 @@ describe('actions', () => {
       expect(store.showNav).toBe(true);
     });
 
-    it('hides navbar', () => {
+    it('show and hides navbar', () => {
       const store = useUserStore();
       store.showNav = true;
       store.SHOW_NAV();
       expect(store.showNav).toBe(false);
+    });
+  });
+
+  describe('SHOW_FILTER', () => {
+    it('hides and show navabr', () => {
+      const store = useUserStore();
+      store.showFilter = false;
+      store.SHOW_FILTER();
+      expect(store.showFilter).toBe(true);
+    });
+  });
+
+  describe('SELECT_AGE', () => {
+    it('fills selectedAge with data', () => {
+      const store = useUserStore();
+      store.SELECT_AGE(['Adulthood']);
+      expect(store.selectedAge).toEqual(['Adulthood']);
+    });
+  });
+
+  describe('CLEAR_SELECTION', () => {
+    it('clears selectedAge', () => {
+      const store = useUserStore();
+      store.selectedAge = ['Adulthood'];
+      store.CLEAR_SELECTION();
+      expect(store.selectedAge).toEqual([]);
     });
   });
 });
