@@ -35,6 +35,8 @@ function restartData() {
     .catch((error) => {
       console.log(error);
     });
-  window.location.reload();
+  setTimeout(() => {
+    window.location.reload();
+  }, 1000);
 }
 </script>
