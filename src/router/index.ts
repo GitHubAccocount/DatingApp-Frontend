@@ -40,7 +40,7 @@ const router = createRouter({
     {
       path: `/find/:id`,
       name: 'user',
-      component: () => import('@/views/SpecificUser.vue')
+      component: () => import('@/views/SingleUserView.vue')
     }
   ]
 });

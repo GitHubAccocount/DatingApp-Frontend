@@ -3,16 +3,22 @@
     <custom-button text="Filter" :icon="['fas', 'filter']" @click="SHOW_FILTER"> </custom-button>
   </div>
   <div v-show="showFilter">
-    <div class="absolute left-0 top-0 flex h-full w-full flex-col border bg-white p-6">
-      <div class="">
-        <font-awesome-icon
-          :icon="['fas', 'xmark']"
-          @click="SHOW_FILTER"
-          size="2xl"
-          role="button"
-        ></font-awesome-icon>
+    <div
+      class="lg:absolute lg:left-0 lg:top-0 lg:flex lg:h-full lg:w-full lg:items-center lg:justify-center lg:bg-white lg:bg-opacity-70"
+    >
+      <div
+        class="absolute left-0 top-0 flex h-2/3 w-1/2 flex-col overflow-y-scroll border border-gray-700 bg-white p-6 lg:relative lg:border-2"
+      >
+        <div class="">
+          <font-awesome-icon
+            :icon="['fas', 'xmark']"
+            @click="SHOW_FILTER"
+            size="2xl"
+            role="button"
+          ></font-awesome-icon>
+        </div>
+        <collapsible-accordion accordion-title="Age"></collapsible-accordion>
       </div>
-      <collapsible-accordion accordion-title="Age"></collapsible-accordion>
     </div>
   </div>
 </template>

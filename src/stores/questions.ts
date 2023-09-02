@@ -103,7 +103,7 @@ export const useQuestionsStore = defineStore('questions', () => {
     if (SELECTED_AGE.value.length === 0) {
       return true;
     } else if (
-      user.age > 18 &&
+      user.age >= 18 &&
       user.age <= 25 &&
       SELECTED_AGE.value.includes('VaryYoungAdulthood')
     ) {
