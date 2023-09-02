@@ -33,10 +33,16 @@ describe('TheFormAlreadyMade', () => {
       name: /i want to repeat the test/i
     }) as HTMLButtonElement;
     await userEvent.click(button);
+
+    const resetingData = await screen.findByText('Reseting data...');
+
     // window.location = { assign: assignMock as any } as Location;
     expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/answers', {});
     expect(axios.post).toHaveBeenCalledWith('http://myfakeapi.com/personalInfo', {});
-    expect(window.location.reload).toHaveBeenCalled();
+    expect(resetingData).toBeVisible();
+    setTimeout(() => {
+      expect(window.location.reload).toHaveBeenCalled();
+    }, 1000);
     Object.defineProperty(window, 'location', { configurable: true, value: window.location });
   });
 });

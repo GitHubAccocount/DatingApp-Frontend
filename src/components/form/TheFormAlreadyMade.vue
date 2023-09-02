@@ -8,14 +8,24 @@
       <span class="font-bold">'I want to repeat the test'</span>
     </p>
     <custom-button text="I want to repeat the test" @click="restartData"></custom-button>
+    <div
+      v-if="displayLoadingMessage"
+      class="absolute flex w-fit justify-center rounded-md border bg-white p-3"
+    >
+      <p class="text-xl">Reseting data...</p>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import axios from 'axios';
 import CustomButton from '@/components/Shared/CustomButton.vue';
+import { ref } from 'vue';
+
+let displayLoadingMessage = ref(false);
 
 function restartData() {
+  displayLoadingMessage.value = true;
   const baseUrl = import.meta.env.VITE_APP_API_URL;
   const urlAnswers = `${baseUrl}/answers`;
   const urlpersonalInfo = `${baseUrl}/personalInfo`;
