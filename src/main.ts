@@ -7,13 +7,14 @@ import {
   faBars,
   faChevronDown,
   faChevronUp,
-  faFilter
+  faFilter,
+  faMessage
 } from '@fortawesome/free-solid-svg-icons';
 
 import App from './App.vue';
 import router from './router';
 
-library.add(faXmark, faBars, faChevronDown, faChevronUp, faFilter);
+library.add(faXmark, faBars, faChevronDown, faChevronUp, faFilter, faMessage);
 
 const app = createApp(App);
 
