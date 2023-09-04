@@ -26,7 +26,10 @@ describe('TheFormEmpathyTest', () => {
     useRouterMock.mockReturnValue({ push });
     render(TheFormEmpathyTest, {
       global: {
-        plugins: [createTestingPinia()]
+        plugins: [createTestingPinia()],
+        stubs: {
+          FontAwesomeIcon: true
+        }
       }
     });
 

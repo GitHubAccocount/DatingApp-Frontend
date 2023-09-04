@@ -11,14 +11,25 @@ describe('TheFormAlreadyMade', () => {
   beforeEach(() => {
     axiosPostMock.mockResolvedValue({});
   });
+
+  const renderTheFormAlreadyMade = () => {
+    render(TheFormAlreadyMade, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true
+        }
+      }
+    });
+  };
+
   it('displays h1 text', () => {
-    render(TheFormAlreadyMade);
+    renderTheFormAlreadyMade();
     const h1Text = screen.queryByText('It seems that the test has already been done');
     expect(h1Text).toBeInTheDocument();
   });
 
   it('displays button', () => {
-    render(TheFormAlreadyMade);
+    renderTheFormAlreadyMade();
     const button = screen.queryByRole('button', { name: /i want to repeat the test/i });
     expect(button).toBeInTheDocument();
   });
@@ -28,7 +39,7 @@ describe('TheFormAlreadyMade', () => {
       configurable: true,
       value: { reload: vi.fn() }
     });
-    render(TheFormAlreadyMade);
+    renderTheFormAlreadyMade();
     const button = screen.queryByRole('button', {
       name: /i want to repeat the test/i
     }) as HTMLButtonElement;

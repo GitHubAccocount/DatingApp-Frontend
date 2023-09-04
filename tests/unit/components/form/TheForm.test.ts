@@ -10,7 +10,10 @@ describe('TheForm', () => {
   const renderTheForm = () => {
     render(TheForm, {
       global: {
-        plugins: [createTestingPinia()]
+        plugins: [createTestingPinia()],
+        stubs: {
+          FontAwesomeIcon: true
+        }
       }
     });
   };

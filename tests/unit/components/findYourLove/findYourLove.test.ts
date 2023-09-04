@@ -11,7 +11,8 @@ describe('findYourLove', () => {
       global: {
         plugins: [createTestingPinia()],
         stubs: {
-          'router-link': RouterLinkStub
+          'router-link': RouterLinkStub,
+          FontAwesomeIcon: true
         }
       }
     });

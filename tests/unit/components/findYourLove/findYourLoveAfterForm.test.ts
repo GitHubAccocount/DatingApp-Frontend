@@ -12,7 +12,8 @@ describe('findYourLoveAfterForm', () => {
       global: {
         plugins: [createTestingPinia()],
         stubs: {
-          'router-link': RouterLinkStub
+          'router-link': RouterLinkStub,
+          FontAwesomeIcon: true
         }
       }
     });

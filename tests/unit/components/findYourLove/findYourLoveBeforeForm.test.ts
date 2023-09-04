@@ -7,7 +7,8 @@ describe('findYourLoveBeforeForm', () => {
     render(findYourLoveBeforeForm, {
       global: {
         stubs: {
-          'router-link': RouterLinkStub
+          'router-link': RouterLinkStub,
+          FontAwesomeIcon: true
         }
       }
     });

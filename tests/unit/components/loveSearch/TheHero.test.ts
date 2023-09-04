@@ -7,7 +7,8 @@ describe('TheHero', () => {
     render(TheHero, {
       global: {
         stubs: {
-          'router-link': RouterLinkStub
+          'router-link': RouterLinkStub,
+          FontAwesomeIcon: true
         }
       }
     });

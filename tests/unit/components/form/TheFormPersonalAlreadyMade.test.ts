@@ -9,7 +9,13 @@ const useRouterMock = useRouter as Mock;
 
 describe('TheFormPersonalAlreadyMade', () => {
   it('displayes h1 text', () => {
-    render(TheFormPersonalAlreadyMade);
+    render(TheFormPersonalAlreadyMade, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true
+        }
+      }
+    });
     const h1Text = screen.queryByText("You can't access this page.");
     expect(h1Text).toBeInTheDocument();
   });
@@ -17,7 +23,13 @@ describe('TheFormPersonalAlreadyMade', () => {
   it('redirect user to /form page', async () => {
     const push = vi.fn();
     useRouterMock.mockReturnValue({ push });
-    render(TheFormPersonalAlreadyMade);
+    render(TheFormPersonalAlreadyMade, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true
+        }
+      }
+    });
 
     const button = screen.queryByRole('button', { name: /redirect me/i }) as HTMLButtonElement;
     await userEvent.click(button);

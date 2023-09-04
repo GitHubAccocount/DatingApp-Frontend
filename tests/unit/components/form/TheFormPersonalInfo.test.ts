@@ -9,7 +9,10 @@ describe('TheFormPersonalInfo', () => {
   const renderTheFormPersonalInfo = () => {
     render(TheFormPersonalInfo, {
       global: {
-        plugins: [createTestingPinia()]
+        plugins: [createTestingPinia()],
+        stubs: {
+          FontAwesomeIcon: true
+        }
       }
     });
   };

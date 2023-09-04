@@ -18,7 +18,13 @@ describe('TheFormPersonalTest', () => {
   const renderTheFormPersonalTest = () => {
     const push = vi.fn();
     useRouterMock.mockReturnValue({ push });
-    render(TheFormPersonalTest);
+    render(TheFormPersonalTest, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true
+        }
+      }
+    });
 
     return { push };
   };
