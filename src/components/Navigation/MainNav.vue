@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky left-0 right-0 top-0 mb-8 h-16 shadow-lg 2xl:h-24" ref="headerMenu">
+  <header class="sticky left-0 right-0 top-0 z-50 mb-8 h-16 shadow-lg 2xl:h-24" ref="headerMenu">
     <nav class="flex h-full w-full items-center justify-between bg-white">
       <div class="flex h-full items-center">
         <div class="hidden pt-2 md:inline md:pl-6">
