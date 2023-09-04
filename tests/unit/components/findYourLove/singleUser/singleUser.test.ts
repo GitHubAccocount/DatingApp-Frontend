@@ -43,7 +43,6 @@ describe('singleUser', () => {
     renderSingleUser('2');
 
     const photo = screen.queryByAltText('user photo') as HTMLElement;
-    console.log(photo);
     expect(photo).toBeInTheDocument();
   });
 });
