@@ -12,6 +12,9 @@ describe('collapsibleAccordion', () => {
         stubs: {
           FontAwesomeIcon: true
         }
+      },
+      props: {
+        accordionTitle: 'Age'
       }
     });
   };
