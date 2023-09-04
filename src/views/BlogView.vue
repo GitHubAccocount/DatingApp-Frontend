@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an blog page</h1>
-  </div>
+  <blog></blog>
 </template>
+
+<script lang="ts" setup>
+import Blog from '@/components/blog/Blog.vue';
+</script>
