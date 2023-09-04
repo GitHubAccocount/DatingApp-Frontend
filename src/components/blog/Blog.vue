@@ -1,5 +1,5 @@
 <template>
-  <section class="mx-12 mb-5">
+  <section class="mx-6 mb-5 lg:mx-12">
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-x-20 lg:gap-y-10">
       <router-link
         v-for="blog in blogs"
