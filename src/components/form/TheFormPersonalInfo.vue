@@ -3,7 +3,7 @@
     class="mx-6 flex h-svh80 overflow-y-scroll rounded-md border bg-red-100 p-6 shadow-md shadow-gray-700"
   >
     <the-form-personal-already-made
-      v-if="answers.length === 0 || personalInfo.length > 0"
+      v-if="!isAnswersEmpty || personalInfo.length > 0"
     ></the-form-personal-already-made>
     <the-form-personal-test v-else></the-form-personal-test>
   </section>
@@ -24,5 +24,15 @@ const personalInfo = computed(() => {
 onMounted(questionsStore.FETCH_ANSWERS);
 const answers = computed(() => {
   return questionsStore.answers;
+});
+
+const isAnswersEmpty = computed(() => {
+  for (let key in answers.value) {
+    if (answers.value.hasOwnProperty(key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 });
 </script>
