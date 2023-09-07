@@ -29,3 +29,5 @@ coverage
 
 # faker
 generate.js
+# Local Netlify folder
+.netlify
