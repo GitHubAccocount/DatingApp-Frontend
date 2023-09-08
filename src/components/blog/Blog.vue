@@ -1,6 +1,9 @@
 <template>
   <section class="mx-6 mb-5 lg:mx-12">
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-x-20 lg:gap-y-10">
+    <div>
+      <loading-message v-if="loading" class="loading-message-80"></loading-message>
+    </div>
+    <div v-if="!loading" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-x-20 lg:gap-y-10">
       <router-link
         v-for="blog in blogs"
         key:blog.id
@@ -35,10 +38,21 @@
 
 <script lang="ts" setup>
 import { useBlogStore } from '@/stores/blog';
-import { computed, onMounted } from 'vue';
+import LoadingMessage from '../Shared/LoadingMessage.vue';
+import { computed, onMounted, ref } from 'vue';
 
 const blogStore = useBlogStore();
-onMounted(blogStore.FETCH_BLOGS);
+const loading = ref(true);
+
+onMounted(async () => {
+  try {
+    await blogStore.FETCH_BLOGS();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loading.value = false;
+  }
+});
 
 const blogs = computed(() => {
   return blogStore.blogs;
