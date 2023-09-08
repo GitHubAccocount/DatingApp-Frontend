@@ -8,7 +8,8 @@
       >) to <span class="font-bold">-4</span> (<span class="font-bold">very stong disagreement</span
       >).
     </p>
-    <ol>
+    <loading-message v-if="loading" class="loading-message"></loading-message>
+    <ol v-if="!loading">
       <li v-for="question in questions" :key="question.id" class="py-2">
         <label :for="question.id.toString()" class="pb-2 pr-2" role="labelname">
           {{ question.id }}. {{ question.text }}</label
@@ -41,13 +42,24 @@
 
 <script lang="ts" setup>
 import CustomButton from '../Shared/CustomButton.vue';
+import LoadingMessage from '../Shared/LoadingMessage.vue';
 import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 const questionsStore = useQuestionsStore();
-onMounted(questionsStore.FETCH_QUESTIONS);
+const loading = ref(true);
+
+onMounted(async () => {
+  try {
+    await questionsStore.FETCH_QUESTIONS();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loading.value = false;
+  }
+});
 
 const questions = computed(() => {
   return questionsStore.questions;
