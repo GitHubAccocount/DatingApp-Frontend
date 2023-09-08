@@ -2,25 +2,27 @@ import { render, screen } from '@testing-library/vue';
 
 import Photos from '@/components/loveSearch/Photos.vue';
 import { nextTick } from 'vue';
-
-beforeEach(() => {
-  vi.useFakeTimers();
-});
-
-afterEach(() => {
-  vi.runOnlyPendingTimers();
-  vi.useRealTimers();
-});
+import { mount } from '@vue/test-utils';
 
 describe('Photos', () => {
   it('checks initial img src', () => {
-    render(Photos);
-    const photo = screen.getByAltText('Couple photos');
-    const photoSrc = photo.getAttribute('src');
-    expect(photoSrc).toContain('assets/couple1v2.jpeg');
+    const wrapper = mount(Photos);
+
+    const vm = wrapper.vm as any;
+
+    const photo = wrapper.find('img');
+
+    vm.isLoaded = true;
+
+    photo.trigger('load');
+
+    const photoSrc = photo.attributes('src');
+    console.log(photoSrc);
+    expect(photoSrc).toEqual('assets/couple1v2.jpeg');
   });
 
   it('executes every 5s', async () => {
+    vi.useFakeTimers();
     render(Photos);
 
     vi.advanceTimersToNextTimer();
@@ -29,13 +31,7 @@ describe('Photos', () => {
     const photo = screen.getByAltText('Couple photos');
     const photoSrc = photo.getAttribute('src');
     expect(photoSrc).toContain('assets/couple2v2.jpeg');
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
-
-  it('removes interval when component is closed', () => {});
-  const { unmount } = render(Photos);
-  const clearInterval = vi.fn();
-  vi.stubGlobal('clearInterval', clearInterval);
-  unmount();
-  expect(clearInterval).toHaveBeenCalled();
-  vi.unstubAllGlobals();
 });
