@@ -3,7 +3,12 @@
     <div>
       <find-your-love-filter></find-your-love-filter>
     </div>
+    <loading-message
+      v-if="loadingUsers && loadingPersonalInfo"
+      class="loading-message-80"
+    ></loading-message>
     <div
+      v-if="!loadingUsers && !loadingPersonalInfo"
       class="grid grid-cols-2 gap-4 pb-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       ref="scrollComponent"
     >
@@ -30,15 +35,35 @@
 import { useQuestionsStore } from '@/stores/questions';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import findYourLoveFilter from '@/components/findYourLove/findYourLoveFilter/findYourLoveFilter.vue';
+import LoadingMessage from '@/components/Shared/LoadingMessage.vue';
 
 const questionsStore = useQuestionsStore();
-onMounted(questionsStore.FETCH_USERS);
+const loadingUsers = ref(true);
+
+onMounted(async () => {
+  try {
+    await questionsStore.FETCH_USERS();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loadingUsers.value = false;
+  }
+});
 
 const users = computed(() => {
   return questionsStore.FILTERED_USERS;
 });
 
-onMounted(questionsStore.FETCH_PERSONAL_INFO);
+const loadingPersonalInfo = ref(true);
+onMounted(async () => {
+  try {
+    await questionsStore.FETCH_PERSONAL_INFO();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loadingPersonalInfo.value = false;
+  }
+});
 
 const personalInfo = computed(() => {
   return questionsStore.personalInfo;
