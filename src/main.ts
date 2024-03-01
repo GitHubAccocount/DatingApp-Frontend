@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import './axios';
 import { createPinia } from 'pinia';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';

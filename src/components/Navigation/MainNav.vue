@@ -50,8 +50,25 @@
         </div>
       </div>
 
-      <div class="py-3 pr-6">
-        <custom-button text="Login"></custom-button>
+      <div v-if="isAuthenticated" class="py-3 pr-6">
+        <router-link class="ml-2" to="/profile">
+          <custom-button text="Profile"></custom-button>
+        </router-link>
+        <custom-button
+          text="Logout"
+          :loading="userStore.isLoading"
+          buttonType="logout"
+          @click="userStore.LOGOUT"
+        ></custom-button>
+      </div>
+
+      <div v-else class="py-3 pr-6">
+        <router-link to="/login">
+          <custom-button text="Login"></custom-button>
+        </router-link>
+        <router-link class="ml-2" to="/signup">
+          <custom-button text="Sign Up"></custom-button>
+        </router-link>
       </div>
     </nav>
   </header>
@@ -77,6 +94,8 @@ const menuItems = ref([
 ]);
 
 const userStore = useUserStore();
+const isAuthenticated = computed(() => userStore.isAuthenticated);
+
 const showNav = computed(() => userStore.showNav);
 const SHOW_NAV = userStore.SHOW_NAV;
 

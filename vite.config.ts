@@ -18,5 +18,8 @@ export default defineConfig({
     coverage: {
       provider: 'istanbul'
     }
+  },
+  server: {
+    port: 3000
   }
 });

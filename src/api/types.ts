@@ -1,5 +1,5 @@
 export interface Question {
-  text: string;
+  question: string;
   id: number;
 }
 
@@ -46,4 +46,37 @@ export interface Blog {
   content6: string;
   subtitle7: string;
   content7: string;
+}
+
+export interface SignUpErrors {
+  name?: string[];
+  surname?: string[];
+  email?: string[];
+  birthday?: string[];
+  password?: string[];
+  password_confirmation?: string[];
+}
+
+export interface EmpathyErrors {
+  [key: string]: string[] | undefined;
+}
+
+export interface PersonalInfoInterfce {
+  gender?: string[];
+  empathyLevel?: string[];
+  lookingFor?: string[];
+  description?: string[];
+}
+
+export interface Users {
+  id: number;
+  profile_picture: string;
+  user_id: number;
+  name: string;
+  birthday: Date;
+  personal_information: PersonalInformation[];
+}
+
+interface PersonalInformation {
+  description: string;
 }

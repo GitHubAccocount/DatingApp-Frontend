@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="Submit()" class="w-full">
+  <form ref="form" @submit.prevent="Submit()" class="w-full">
     <h1 class="mb-2 text-3xl font-bold">Additional Information</h1>
     <p class="text-lg">
       Say something more about yourself, so we can find
@@ -7,6 +7,9 @@
     </p>
 
     <p class="mt-5 font-bold">Choose your gender:</p>
+
+    <span v-if="errors?.gender" class="block text-red-600">{{ errors.gender[0] }}</span>
+
     <div class="w-full p-1">
       <input type="radio" id="female" v-model="gender" value="female" class="accent-red-400" />
       <label for="female" class="cursor-pointer pl-2">Female</label>
@@ -24,6 +27,9 @@
     </div>
 
     <p class="mt-2 font-bold">Who are you looking for:</p>
+
+    <span v-if="errors?.lookingFor" class="block text-red-600">{{ errors.lookingFor[0] }}</span>
+
     <div class="w-full p-1">
       <input
         type="radio"
@@ -50,6 +56,7 @@
       <p class="mt-2 inline font-bold">
         What level of empathy do you expect from the person you are looking for:
       </p>
+
       <div class="group relative inline-block">
         <p
           class="absolute bottom-1 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-rose-300 bg-rose-300 text-xs font-bold text-white"
@@ -68,6 +75,8 @@
         </div>
       </div>
     </div>
+
+    <span v-if="errors?.empathyLevel" class="block text-red-600">{{ errors.empathyLevel[0] }}</span>
 
     <div v-for="choose in empathyLevelChoose" class="w-full p-1">
       <input
@@ -94,7 +103,7 @@
     </div>
 
     <div class="flex w-full justify-center pb-6 pt-3">
-      <custom-button type="submit" text="Submit"></custom-button>
+      <custom-button type="submit" text="Submit" :loading="questionStore.isLoading"></custom-button>
     </div>
   </form>
 </template>
@@ -102,9 +111,10 @@
 <script lang="ts" setup>
 import CustomButton from '../Shared/CustomButton.vue';
 import { useQuestionsStore } from '@/stores/questions';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { fromJSON } from 'postcss';
 
 interface FormData {
   gender?: string;
@@ -157,45 +167,58 @@ const empathyLevelChoose = ref([
   }
 ]);
 
-const formData = computed<FormData[]>(() => {
-  return [
-    { gender: gender.value },
-    { empathyLevel: empathyLevel.value },
-    { lookingFor: lookingFor.value },
-    { description: description.value }
-  ];
+const formData = computed<FormData>(() => {
+  return {
+    gender: gender.value,
+    empathyLevel: empathyLevel.value,
+    lookingFor: lookingFor.value,
+    description: description.value
+  };
 });
 
-const checkValue = () => {
-  let checker = true;
-  formData.value.forEach((data: object) => {
-    const answers = Object.values(data);
-    console.log(answers);
-    if (answers[0] === '') {
-      checker = false;
-    }
-  });
+// const checkValue = () => {
+//   let checker = true;
+//   formData.value.forEach((data: object) => {
+//     const answers = Object.values(data);
+//     console.log(answers);
+//     if (answers[0] === '') {
+//       checker = false;
+//     }
+//   });
 
-  return checker;
+//   return checker;
+// };
+
+const form = ref<HTMLFormElement | null>(null);
+
+const questionStore = useQuestionsStore();
+
+const errors = computed(() => questionStore.personalInformationErrors);
+
+const Submit = () => {
+  questionStore.SUBMIT_PERSONAL_INFORMATION(formData.value, form.value);
 };
 
-const router = useRouter();
-function Submit() {
-  if (checkValue()) {
-    const baseUrl = import.meta.env.VITE_APP_API_URL;
-    const url = `${baseUrl}/personalInfo`;
-    axios
-      .post(url, formData.value)
-      .then((resp) => {
-        console.log(resp.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    alert('Form has been sent successfully!');
-    router.push({ path: '/find' });
-  } else {
-    alert('Please, answer all questions :)');
-  }
-}
+// function Submit() {
+//   // const baseUrl = import.meta.env.VITE_APP_API_URL;
+//   // const url = `${baseUrl}/personalInfo`;
+//   const url = 'http://localhost:8000/api/personal-informations';
+//   axios.get('http://localhost:8000/sanctum/csrf-cookie');
+//   axios
+//     .post(url, formData.value)
+//     .then((resp) => {
+//       console.log(resp.data);
+//       router.push({ path: '/find' });
+//     })
+//     .catch((error) => {
+//       if (error.response.status == 422) {
+//         errors.value = error.response.data.errors;
+//         form.value?.scrollIntoView({ behavior: 'smooth' });
+//       }
+//     });
+// }
+
+onUnmounted(() => {
+  questionStore.personalInformationErrors = {};
+});
 </script>

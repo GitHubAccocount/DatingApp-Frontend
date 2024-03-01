@@ -2,8 +2,10 @@
   <section
     class="mx-6 flex h-svh80 overflow-y-scroll rounded-md border bg-red-100 p-6 shadow-md shadow-gray-700"
   >
+    <!--
     <the-form-already-made v-if="answers.length > 0"></the-form-already-made>
-    <the-form-empathy-test v-else></the-form-empathy-test>
+  -->
+    <the-form-empathy-test></the-form-empathy-test>
   </section>
 </template>
 
@@ -15,8 +17,8 @@ import { computed, onMounted, ref } from 'vue';
 
 const questionsStore = useQuestionsStore();
 
-onMounted(questionsStore.FETCH_ANSWERS);
-const answers = computed(() => {
-  return questionsStore.answers;
-});
+// onMounted(questionsStore.FETCH_ANSWERS);
+// const answers = computed(() => {
+//   return questionsStore.answers;
+// });
 </script>
