@@ -94,7 +94,11 @@ const menuItems = ref([
 ]);
 
 const userStore = useUserStore();
-const isAuthenticated = computed(() => userStore.isAuthenticated);
+const isAuthenticated = ref();
+
+onMounted(() => {
+  isAuthenticated.value = userStore.isAuthenticated;
+});
 
 const showNav = computed(() => userStore.showNav);
 const SHOW_NAV = userStore.SHOW_NAV;

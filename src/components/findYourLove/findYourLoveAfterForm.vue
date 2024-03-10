@@ -10,7 +10,7 @@
       ref="scrollComponent"
     >
       <div
-        v-for="(user, index) in matchedUsers"
+        v-for="(user, index) in usersOnScroll"
         :key="user.user_id"
         class="rounded-md border border-red-400 shadow-md"
       >
@@ -35,58 +35,22 @@ import findYourLoveFilter from '@/components/findYourLove/findYourLoveFilter/fin
 import LoadingMessage from '@/components/Shared/LoadingMessage.vue';
 import axios from 'axios';
 import { useMatchedUsersStore } from '@/stores/matchedUsers';
+import type { Users } from '@/api/types';
 
 const questionsStore = useQuestionsStore();
 const loadingUsers = ref(false);
 
-// onMounted(async () => {
-//   try {
-//     await questionsStore.FETCH_USERS();
-//   } catch (error) {
-//     console.error(error);
-//   } finally {
-//     loadingUsers.value = false;
-//   }
-// });
-
-// NEW
-
-// interface Users {
-//   profile_picture: string;
-//   user_id: number;
-//   name: string;
-//   birthday: Date;
-// }
-
-// const matchedUsers = useMatchedUsersStore().matchedUsers;
-// const matchedUsers = computed(() => matchedUsersStore.matchedUsers);
-// const props = defineProps(['matchedUsers']);
 const matchedStore = useMatchedUsersStore();
 const matchedUsers = matchedStore.matchedUsers;
 console.log(matchedUsers);
 
 const formattedAges = matchedStore.formattedAges;
 
-// const fetchMatchedUsers = async () => {
-//   try {
-//     const response = await axios.get('http://localhost:8000/api/matched-users');
-//     console.log('Users: ', response.data);
-//     matchedUsers.value = response.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// const matchedUsersStore = useMatchedUsersStore();
-
-// onMounted(() => {
-//   matchedUsersStore.FETCH_MATCHED_USERS();
-// });
-
 const scrollComponent = ref<HTMLElement | null>(null);
 let start = 0;
 let end = 10;
-const usersOnScroll = ref(matchedUsers.slice(start, end));
+const usersOnScroll = ref<Users[]>(matchedUsers.slice(start, end));
+console.log(usersOnScroll.value);
 
 const loadMoreUsers = () => {
   start += 10;

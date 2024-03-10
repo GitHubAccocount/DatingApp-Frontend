@@ -42,6 +42,16 @@ const shouldShowFooter = computed(() => {
 // });
 
 const userStore = useUserStore();
+
+onMounted(() => {
+  console.log('e');
+  // to connect the public channel
+  window.Echo.channel('public').listen('Hello', (e: any) => {
+    console.log('go public');
+    //code for displaying the serve data
+    console.log(e); // the data from the server
+  });
+});
 </script>
 
 <style>

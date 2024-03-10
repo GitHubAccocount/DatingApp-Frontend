@@ -17,7 +17,9 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.4.0",
     "faker": "^5.5.3",
+    "laravel-echo": "^1.16.0",
     "pinia": "^2.0.32",
+    "pusher-js": "^8.4.0-rc2",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

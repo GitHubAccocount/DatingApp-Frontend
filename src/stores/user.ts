@@ -23,7 +23,8 @@ export const useUserStore = defineStore('user', () => {
   const isAuthenticated = computed(() => !!localStorage.getItem('auth'));
 
   const GET_TOKEN = async () => {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+    const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+    localStorage.setItem('token', response.data.token);
   };
 
   // ========== START SIGN UP ==========
@@ -54,11 +55,11 @@ export const useUserStore = defineStore('user', () => {
     try {
       const response = await axios.get('http://localhost:8000/api/user');
       user.value = response.data;
+      isLoadingGlobal.value = false;
     } catch (error) {
       user.value = null;
       console.log(error);
     } finally {
-      isLoadingGlobal.value = false;
     }
   };
 

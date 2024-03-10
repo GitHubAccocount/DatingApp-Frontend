@@ -62,5 +62,5 @@ if (csrfToken) {
   axios.defaults.headers.common['X-XSRF-TOKEN'] = csrfToken;
 } else {
   console.error('XSRF-TOKEN cookie not found.');
-  window.location.reload();
+  // window.location.reload();
 }
