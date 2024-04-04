@@ -20,9 +20,13 @@
             <p class="text-lg">{{ currentUser?.personal_information[0].description }}</p>
           </div>
         </div>
-        <div class="mt-3 flex justify-center">
-          <custom-button text="Start Chat" :icon="['fas', 'message']"></custom-button>
-        </div>
+        <router-link to="/chat" class="mt-3 flex justify-center">
+          <custom-button
+            @click="onSubmit"
+            text="Start Chat"
+            :icon="['fas', 'message']"
+          ></custom-button>
+        </router-link>
       </div>
     </section>
     <section v-else>
@@ -38,6 +42,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useMatchedUsersStore } from '@/stores/matchedUsers';
 import type { User, Users } from '@/api/types';
+import axios from 'axios';
 
 const matchedStore = useMatchedUsersStore();
 // onMounted(questionsStore.FETCH_USERS);
@@ -84,4 +89,23 @@ const formattedAge = computed(() => {
     return diffInYears;
   }
 });
+
+async function onSubmit() {
+  const user = currentUser.value;
+  if (!user) return;
+
+  const data = new FormData();
+  if (currentUser.value) {
+    data.append('users[]', currentUser.value.id.toString());
+  }
+  data.append('isPrivate', '1');
+
+  try {
+    axios.get('http://localhost:8000/sanctum/csrf-cookie');
+    const response = await axios.post('http://localhost:8000/api/chat/create-chat', data);
+    console.log(response.data.chat.id);
+  } catch (error) {
+    console.error(error);
+  }
+}
 </script>

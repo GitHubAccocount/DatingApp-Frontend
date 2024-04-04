@@ -80,3 +80,33 @@ export interface Users {
 interface PersonalInformation {
   description: string;
 }
+
+export interface Participant {
+  id: number;
+  name: string;
+  profile_picture: string;
+}
+
+export interface Chat {
+  id: number;
+  participants: Participant[];
+  messages: Message[];
+}
+
+export interface Message {
+  id: number;
+  message: string;
+  chat_id: number;
+  user_id: number;
+  data: {
+    seenBy: any[]; // Define the type for seenBy array
+    status: string;
+  };
+  created_at: string;
+  sender: {
+    id: number;
+    name: string;
+    surname: string;
+    profile_picture: string;
+  };
+}

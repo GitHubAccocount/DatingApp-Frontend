@@ -90,7 +90,7 @@ const logoPath = ref(logoImage);
 const menuItems = ref([
   { text: 'Home', url: '/', name: 'home' },
   { text: 'Find Your Love', url: '/find', name: 'find' },
-  { text: 'Blog', url: '/blog', name: 'blog' }
+  { text: 'Chat', url: '/chat', name: 'chat' }
 ]);
 
 const userStore = useUserStore();

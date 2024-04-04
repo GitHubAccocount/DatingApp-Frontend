@@ -24,8 +24,21 @@ export const useUserStore = defineStore('user', () => {
 
   const GET_TOKEN = async () => {
     const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+    // const token = getCsrfToken();
+    // console.log('token: ', token);
     localStorage.setItem('token', response.data.token);
   };
+
+  // function getCsrfToken() {
+  //   const cookies = document.cookie.split(';');
+  //   for (const cookie of cookies) {
+  //     const [name, value] = cookie.trim().split('=');
+  //     if (name === 'XSRF-TOKEN') {
+  //       return decodeURIComponent(value);
+  //     }
+  //   }
+  //   return null; // 'XSRF-TOKEN' cookie not found
+  // }
 
   // ========== START SIGN UP ==========
 
@@ -102,6 +115,7 @@ export const useUserStore = defineStore('user', () => {
     } finally {
       isLoading.value = false;
       localStorage.removeItem('auth');
+      localStorage.removeItem('token');
       window.location.reload();
     }
   };
